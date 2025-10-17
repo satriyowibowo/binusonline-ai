@@ -10,7 +10,7 @@ import time
 
 st.set_page_config(
     page_title="Binus AI - CIFAR-10 Classifier",
-    page_icon="🎓",
+    page_icon="",
     layout="wide"
 )
 
@@ -148,7 +148,7 @@ elif app_mode == "Model Information":
     st.header("Model Information")
 
 elif app_mode == "About Project":
-    st.header("🎓 About This Project")
+    st.header("About This Project")
 
 st.markdown("---")
-st.markdown("🎓 **Binus University** - Artificial Intelligence Course")
+st.markdown("Artificial Intelligence Course")
