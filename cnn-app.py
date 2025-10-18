@@ -56,7 +56,7 @@ def create_basic_model():
 @st.cache_resource
 def load_model():
     try:
-        model_path = 'models/best_cifar10_model.h5'
+        model_path = 'models/best_model_lr_0_0001.h5'
         
         if not os.path.exists(model_path):
             st.sidebar.warning("Model file not found. Using basic model.")
@@ -64,17 +64,17 @@ def load_model():
         
         file_size = os.path.getsize(model_path) / (1024 * 1024)  # MB
         if file_size < 1:
-            st.sidebar.warning(f"⚠️ Model file seems too small ({file_size:.2f} MB). Using basic model.")
+            st.sidebar.warning(f"Model file seems too small ({file_size:.2f} MB). Using basic model.")
             return create_basic_model()
         
-        st.sidebar.info(f"🔄 Loading model from: {model_path}")
+        st.sidebar.info(f"Loading model from: {model_path}")
         model = keras.models.load_model(model_path)
-        st.sidebar.success(f"✅ Custom model loaded successfully! Size: {file_size:.2f} MB")
+        st.sidebar.success(f"Custom model loaded successfully! Size: {file_size:.2f} MB")
         return model
         
     except Exception as e:
-        st.sidebar.error(f"❌ Error loading custom model: {str(e)}")
-        st.sidebar.info("🔄 Falling back to basic model...")
+        st.sidebar.error(f"Error loading custom model: {str(e)}")
+        st.sidebar.info("Falling back to basic model...")
         return create_basic_model()
 
 def preprocess_image(img):
@@ -208,7 +208,7 @@ if app_mode == "Image Classification":
                                 'Class Index': i,
                                 'Confidence Score': f"{score*100:.4f}%",
                                 'Raw Probability': f"{score:.6f}",
-                                'Is Predicted': '✅' if i == predicted_class_idx else ''
+                                'Is Predicted': 'Yes' if i == predicted_class_idx else ''
                             })
                         
                         st.dataframe(scores_data, use_container_width=True)
